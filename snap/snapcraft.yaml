@@ -1,9 +1,7 @@
 # This file is generated automatically and should not be edited manually.
 name: certbot-dns-dnsmanager
 summary: dnsmanager.io DNS Authenticator plugin for Certbot
-    long_description = readme,
 description: dnsmanager.io DNS Authenticator plugin for Certbot
-    long_description = readme,
 confinement: strict
 grade: stable
 base: core20
