@@ -18,6 +18,7 @@ API_BASE_URL = "https://app.dnsmanager.io/api/v1"
 CREDENTIAL_URL = "https://app.dnsmanager.io/account/api/keys"
 DEFAULT_PROPAGATION_SECONDS = 60
 
+
 class Authenticator(dns_common.DNSAuthenticator):
     """DNS Authenticator for dnsmanager.io
 
@@ -233,7 +234,8 @@ class _DnsmanagerClient:
             if (
                     record["type"] == "TXT"
                     and record["name"] == record_name
-                    and record["content"] == record_content
+                    # record content is wrapped in quotes for TXT records
+                    and record["content"] == f'"{record_content}"'
             ):
                 return record["id"]
 
