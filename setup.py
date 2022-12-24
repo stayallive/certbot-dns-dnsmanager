@@ -37,7 +37,7 @@ if os.environ.get("SNAP_BUILD"):
     install_requires.append("packaging")
 
 # Load readme to use on PyPI
-with open("README.rst", encoding="utf8") as f:
+with open("README.md", encoding="utf8") as f:
     readme = f.read()
 
 setup(
@@ -49,7 +49,7 @@ setup(
     author_email="alex+certbot-dns-dnsmanager@bouma.me",
     license="MIT",
     long_description=readme,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     python_requires=">=3.6",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
