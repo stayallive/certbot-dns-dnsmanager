@@ -46,6 +46,7 @@ If you installed certbot as a snap, then you have to install this plugin as a sn
 .. code:: bash
 
     snap install certbot-dns-dnsmanager
+    snap set certbot trust-plugin-with-root=ok
     snap connect certbot:plugin certbot-dns-dnsmanager
 
 Credentials
