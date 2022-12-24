@@ -1,35 +1,36 @@
 dnsmanager.io DNS Authenticator Plugin for Certbot
 ==================================================
 
-.. image:: https://img.shields.io/github/license/stayallive/certbot-dns-dnsmanager?style=for-the-badge
-    :alt: License Badge
-    :target: LICENSE
-
-.. image:: https://img.shields.io/pypi/v/certbot-dns-dnsmanager?style=for-the-badge
-    :alt: PyPI Version Badge
-    :target: https://pypi.org/project/certbot-dns-dnsmanager/
-
-.. image:: https://img.shields.io/pypi/pyversions/certbot-dns-dnsmanager?style=for-the-badge
-    :alt: Supported Python Versions Badge
-    :target: https://pypi.org/project/certbot-dns-dnsmanager/
-
-.. image:: https://readthedocs.org/projects/certbot-dns-dnsmanager/badge/?version=latest&style=for-the-badge
-    :alt: Documentation Badge
-    :target: https://certbot-dns-dnsmanager.readthedocs.io/en/latest/
-
-.. image:: https://flat.badgen.net/snapcraft/v/certbot-dns-dnsmanager/?scale=1.4
+.. image:: https://snapcraft.io/certbot-dns-dnsmanager/badge.svg?version=latest
     :alt: Snap Store Badge
     :target: https://snapcraft.io/certbot-dns-dnsmanager
 
-This plugin enables DNS verification with certbot when using `dnsmanager.io`_ DNS. Full documentation is on `Read the Docs`_.
+.. image:: https://img.shields.io/pypi/v/certbot-dns-dnsmanager
+    :alt: PyPI Version Badge
+    :target: https://pypi.org/project/certbot-dns-dnsmanager/
+
+This plugin enables DNS verification with certbot when using `dnsmanager.io`_.
 
 .. _dnsmanager.io: https://app.dnsmanager.io?ref=certbot-dns-dnsmanager
-.. _Read the Docs: https://certbot-dns-dnsmanager.readthedocs.io/en/latest/
 
 Installation
 ------------
 
-This package can be installed with pip
+If you installed certbot as a snap, then you have to install this plugin as a snap as well.
+
+.. code:: bash
+
+    snap install certbot-dns-dnsmanager
+    snap set certbot trust-plugin-with-root=ok
+    snap connect certbot:plugin certbot-dns-dnsmanager
+
+and can be upgraded using the ``refresh`` command:
+
+.. code:: bash
+
+    snap refresh certbot-dns-dnsmanager
+
+Alternatively this package can be installed with pip:
 
 .. code:: bash
 
@@ -41,16 +42,10 @@ and can be upgraded using the ``--upgrade`` flag
 
     pip install --upgrade certbot-dns-dnsmanager
 
-If you installed certbot as a snap, then you have to install this plugin as a snap as well.
-
-.. code:: bash
-
-    snap install certbot-dns-dnsmanager
-    snap set certbot trust-plugin-with-root=ok
-    snap connect certbot:plugin certbot-dns-dnsmanager
-
 Credentials
 -----------
+
+You need to supply certbot with your ``dnsmanager.io`` API credentials, this is an example:
 
 .. code:: ini
    :name: certbot_dnsmanager_credentials.ini
@@ -62,6 +57,8 @@ Credentials
 Examples
 --------
 
+Simple example for a single domain:
+
 .. code:: bash
 
    certbot certonly \
@@ -69,18 +66,22 @@ Examples
      --dns-dnsmanager-credentials ~/.secrets/certbot/dnsmanager.ini \
      -d example.com
 
+Simple example for wildcard domain:
+
 .. code:: bash
 
    certbot certonly \
      --authenticator dns-dnsmanager \
      --dns-dnsmanager-credentials ~/.secrets/certbot/dnsmanager.ini \
      -d example.com \
-     -d www.example.com
+     -d *.example.com
+
+Example changing the propagation delay, although you should not have to adjust it normally:
 
 .. code:: bash
 
    certbot certonly \
      --authenticator dns-dnsmanager \
      --dns-dnsmanager-credentials ~/.secrets/certbot/dnsmanager.ini \
-     --dns-dnsmanager-propagation-seconds 60 \
+     --dns-dnsmanager-propagation-seconds 120 \
      -d example.com

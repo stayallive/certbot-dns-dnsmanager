@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 API_BASE_URL = "https://app.dnsmanager.io/api/v1"
 CREDENTIAL_URL = "https://app.dnsmanager.io/account/api/keys"
-
+DEFAULT_PROPAGATION_SECONDS = 60
 
 class Authenticator(dns_common.DNSAuthenticator):
     """DNS Authenticator for dnsmanager.io
@@ -32,7 +32,7 @@ class Authenticator(dns_common.DNSAuthenticator):
 
     @classmethod
     def add_parser_arguments(
-            cls, add: Callable[..., None], default_propagation_seconds: int = 120
+            cls, add: Callable[..., None], default_propagation_seconds: int = DEFAULT_PROPAGATION_SECONDS
     ) -> None:
         super().add_parser_arguments(add, default_propagation_seconds)
         add("credentials", help="dnsmanager.io credentials INI file.")

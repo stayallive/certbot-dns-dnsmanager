@@ -36,11 +36,6 @@ if not os.environ.get("SNAP_BUILD"):
 if os.environ.get("SNAP_BUILD"):
     install_requires.append("packaging")
 
-docs_extras = [
-    "Sphinx>=1.0",  # autodoc_member_order = 'bysource', autodoc_default_flags
-    "sphinx_rtd_theme",
-]
-
 # Load readme to use on PyPI
 with open("README.rst", encoding="utf8") as f:
     readme = f.read()
@@ -79,9 +74,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=install_requires,
-    extras_require={
-        "docs": docs_extras,
-    },
     entry_points={
         "certbot.plugins": [
             "dns-dnsmanager = certbot_dns_dnsmanager.dns_dnsmanager:Authenticator",

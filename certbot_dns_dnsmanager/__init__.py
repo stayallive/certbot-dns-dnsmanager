@@ -17,6 +17,7 @@ snap. In that case, you can install the plugin by running:
 .. code:: bash
 
     snap install certbot-dns-dnsmanager
+    snap set certbot trust-plugin-with-root=ok
     snap connect certbot:plugin certbot-dns-dnsmanager
 
 Alternatively, you can install certbot using pip and install the plugin by
@@ -33,7 +34,7 @@ Named Arguments
 ``--dns-dnsmanager-credentials``          dnsmanager.io credentials_ INI file. (Required)
 ``--dns-dnsmanager-propagation-seconds``  The number of seconds to wait for DNS
                                           to propagate before asking the ACME
-                                          server to verify the DNS record. (Default: 120)
+                                          server to verify the DNS record. (Default: 60)
 ========================================  =====================================
 
 
@@ -96,13 +97,13 @@ Examples
      -d www.example.com
 
 .. code-block:: bash
-   :caption: To acquire a certificate for ``example.com``, waiting 60 seconds
+   :caption: To acquire a certificate for ``example.com``, waiting 120 seconds
              for DNS propagation
 
    certbot certonly \\
      --authenticator dns-dnsmanager \\
      --dns-dnsmanager-credentials ~/.secrets/certbot/dnsmanager.ini \\
-     --dns-dnsmanager-propagation-seconds 60 \\
+     --dns-dnsmanager-propagation-seconds 120 \\
      -d example.com
 
 """
