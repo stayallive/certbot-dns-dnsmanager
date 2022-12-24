@@ -4,7 +4,7 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-version = "0.0.6"
+version = "1.0.0"
 
 install_requires = [
     "requests>=2.25.1",
