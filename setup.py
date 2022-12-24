@@ -84,7 +84,7 @@ setup(
     },
     entry_points={
         "certbot.plugins": [
-            "dns-dnsmanager = certbot_dns_dnsmanager._internal.dns_dnsmanager:Authenticator",
+            "dns-dnsmanager = certbot_dns_dnsmanager.dns_dnsmanager:Authenticator",
         ],
     },
 )
