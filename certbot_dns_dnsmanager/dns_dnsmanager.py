@@ -14,6 +14,7 @@ from certbot.plugins.dns_common import CredentialsConfiguration
 
 logger = logging.getLogger(__name__)
 
+API_BASE_URL = "https://app.dnsmanager.io/api/v1"
 CREDENTIAL_URL = "https://app.dnsmanager.io/account/api/keys"
 
 
@@ -109,7 +110,7 @@ class _DnsmanagerClient:
         }
 
         response = requests.put(
-            f"https://api.dnsmanager.io/api/v1/user/domain/{domain_id}/records",
+            f"{API_BASE_URL}/user/domain/{domain_id}/records",
             json=payload,
             headers=post_headers,
         )
@@ -153,7 +154,7 @@ class _DnsmanagerClient:
             record_id = self._find_txt_record_id(domain_id, domain_name, record_name, record_content)
             if record_id:
                 response = requests.delete(
-                    f"https://api.dnsmanager.io/api/v1/user/domain/{domain_id}/record/{record_id}",
+                    f"{API_BASE_URL}/user/domain/{domain_id}/record/{record_id}",
                     headers=self.headers,
                 )
                 if response.status_code != 200:
@@ -184,7 +185,7 @@ class _DnsmanagerClient:
 
             # We prepend the query with a `!` to force an exact match
             response = requests.get(
-                f"https://api.dnsmanager.net/api/v1/user/domains?query=!{zone_name_guess}",
+                f"{API_BASE_URL}/user/domains?query=!{zone_name_guess}",
                 headers=self.headers,
             )
 
@@ -218,7 +219,7 @@ class _DnsmanagerClient:
             record_name = record_name[: -(len(domain_name) + 1)]
 
         response = requests.get(
-            f"https://api.dnsmanager.io/api/v1/user/domain/{domain_id}/records?query=!{record_name}",
+            f"{API_BASE_URL}/user/domain/{domain_id}/records?query=!{record_name}",
             headers=self.headers
         )
 
