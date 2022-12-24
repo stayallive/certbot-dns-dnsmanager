@@ -109,7 +109,7 @@ class _DnsmanagerClient:
             "content": record_content,
         }
 
-        response = requests.put(
+        response = requests.post(
             f"{API_BASE_URL}/user/domain/{domain_id}/records",
             json=payload,
             headers=post_headers,
