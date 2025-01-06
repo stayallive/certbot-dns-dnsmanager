@@ -8,8 +8,6 @@ adopt-info: certbot-dns-dnsmanager
 platforms:
   amd64:
   arm64:
-    build-on: [amd64, arm64]
-    build-for: [arm64]
 
 parts:
   certbot-dns-dnsmanager:
