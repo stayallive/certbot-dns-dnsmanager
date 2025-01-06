@@ -54,8 +54,10 @@ stage
 *.snap
 snap-constraints.txt
 qemu-*
-certbot-dns*_amd64*.txt
-certbot-dns*_arm*.txt
+certbot-dns*_arm*.snap
+certbot-dns*_amd64*.snap
+snapcraft-certbot-dns*_arm*.txt
+snapcraft-certbot-dns*_amd64*.txt
 /certbot_amd64*.txt
 /certbot_arm*.txt
 snapcraft.cfg
