@@ -1,14 +1,15 @@
 name: certbot-dns-dnsmanager
-base: core20
+base: core24
 summary: dnsmanager.io DNS Authenticator plugin for Certbot
 description: dnsmanager.io DNS Authenticator plugin for Certbot
 grade: stable
 confinement: strict
 adopt-info: certbot-dns-dnsmanager
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
+platforms:
+  amd64:
+  arm64:
+    build-on: [amd64, arm64]
+    build-for: [arm64]
 
 parts:
   certbot-dns-dnsmanager:
@@ -32,7 +33,7 @@ slots:
     interface: content
     content: certbot-1
     read:
-      - $SNAP/lib/python3.8/site-packages
+      - $SNAP/lib/python3.12/site-packages
 
 plugs:
   certbot-metadata:
