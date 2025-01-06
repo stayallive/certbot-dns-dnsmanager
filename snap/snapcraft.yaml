@@ -8,6 +8,7 @@ adopt-info: certbot-dns-dnsmanager
 platforms:
   amd64:
   arm64:
+  armhf:
 
 parts:
   certbot-dns-dnsmanager:
